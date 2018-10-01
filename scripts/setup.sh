@@ -89,3 +89,6 @@ then
   rm -rf "$NINJA_DIR"
   git clone $NINJA_REPO_URL $NINJA_DIR -b $NINJA_VERSION --single-branch --depth 1
 fi
+
+swiftenv install "$TARGET_SWIFT_VERSION" --build
+export SWIFT_VERSION="$TARGET_SWIFT_VERSION"
