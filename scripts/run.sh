@@ -51,7 +51,7 @@ fi
 # Build
 if [ ! -f "$BIN_PATH" ]
 then
-  swift build --package-path=$PACKAGE_DIR -c release -Xswiftc -static-stdlib --disable-sandbox
+  swift build --package-path=$PACKAGE_DIR -c release -Xswiftc -static-stdlib -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.11" --disable-sandbox
 fi
 
 # Execute
