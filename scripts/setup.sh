@@ -1,4 +1,10 @@
 #!/bin/sh
+####################
+#### Dependency ####
+####################
+SWIFTENV_REPO_URL="https://github.com/kylef/swiftenv"
+
+
 ###################
 #### Arguments ####
 ###################
@@ -12,6 +18,8 @@ TARGET_SWIFT_VERSION=$2
 #####################
 CMAKE_CACHE_DIR=$(<$CONFIG_DIR/cmake/cache)
 CMAKE_SOURCE_URL=$(<$CONFIG_DIR/cmake/source)
+SWIFTENV_CACHE_DIR=$(<$CONFIG_DIR/swiftenv/cache)
+SWIFTENV_VERSION=$(<$CONFIG_DIR/swiftenv/version)
 
 
 ##############################
@@ -47,3 +55,21 @@ then
 fi
 
 export PATH="$CMAKE_BIN_DIR:$PATH"
+
+
+########################
+#### Setup swiftenv ####
+########################
+
+SWIFTENV_DIR="$SWIFTENV_CACHE_DIR/$SWIFTENV_VERSION"
+
+# Clone swiftenv
+if [ ! -d "$SWIFTENV_DIR/bin" ]
+then
+  rm -rf "$SWIFTENV_DIR"
+  git clone $SWIFTENV_REPO_URL $SWIFTENV_DIR -b $SWIFTENV_VERSION --single-branch --depth 1
+fi
+
+export SWIFTENV_ROOT="$PWD/$SWIFTENV_DIR"
+export PATH="$SWIFTENV_ROOT/bin:$PATH"
+eval "$(swiftenv init -)"
