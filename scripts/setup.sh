@@ -3,6 +3,7 @@
 #### Dependency ####
 ####################
 SWIFTENV_REPO_URL="https://github.com/kylef/swiftenv"
+NINJA_REPO_URL="https://github.com/ninja-build/ninja"
 
 
 ###################
@@ -20,6 +21,7 @@ CMAKE_CACHE_DIR=$(<$CONFIG_DIR/cmake/cache)
 CMAKE_SOURCE_URL=$(<$CONFIG_DIR/cmake/source)
 SWIFTENV_CACHE_DIR=$(<$CONFIG_DIR/swiftenv/cache)
 SWIFTENV_VERSION=$(<$CONFIG_DIR/swiftenv/version)
+NINJA_VERSION=$(<$CONFIG_DIR/ninja/version)
 
 
 ##############################
@@ -73,3 +75,17 @@ fi
 export SWIFTENV_ROOT="$PWD/$SWIFTENV_DIR"
 export PATH="$SWIFTENV_ROOT/bin:$PATH"
 eval "$(swiftenv init -)"
+
+
+#####################
+#### Setup ninja ####
+#####################
+
+NINJA_DIR="$SWIFTENV_DIR/tmp/swiftenv-build-$TARGET_SWIFT_VERSION/ninja"
+
+# Clone ninja
+if [ ! -f "$NINJA_DIR/configure.py" ]
+then
+  rm -rf "$NINJA_DIR"
+  git clone $NINJA_REPO_URL $NINJA_DIR -b $NINJA_VERSION --single-branch --depth 1
+fi
