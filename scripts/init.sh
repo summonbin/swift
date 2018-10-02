@@ -10,6 +10,7 @@ BASE_URL="https://raw.githubusercontent.com/summonbin/swift"
 
 INSTALL_PATH=$1
 SCHEME_PATH=$2
+DEFAULT_CACHE_PATH=$3
 
 
 ######################
@@ -27,4 +28,7 @@ curl -L "$BASE_URL/$VERSION/scripts/run.sh" -o "$INSTALL_PATH/$DRIVER_NAME/run.s
 ######################
 
 mkdir -p $SCHEME_PATH/$DRIVER_NAME/package
-echo "$INSTALL_PATH/cache/$DRIVER_NAME/package" > $SCHEME_PATH/$DRIVER_NAME/package/cache
+if [ ! -f "$SCHEME_PATH/$DRIVER_NAME/package/cache" ]
+then
+  echo "$DEFAULT_CACHE_PATH/$DRIVER_NAME/package" > "$SCHEME_PATH/$DRIVER_NAME/package/cache"
+fi
