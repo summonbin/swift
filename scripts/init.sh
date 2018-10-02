@@ -1,6 +1,6 @@
 #!/bin/sh
 DRIVER_NAME="swift"
-VERSION="0.1.0"
+VERSION="0.1.1"
 BASE_URL="https://raw.githubusercontent.com/summonbin/swift"
 
 
