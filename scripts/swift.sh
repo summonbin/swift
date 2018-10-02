@@ -18,7 +18,7 @@ BIN_ARGS=${BIN_ARGS[@]}
 #### Setup Swift ####
 #####################
 
-source $BASE_DIR/setup.sh $CONFIG_DIR $TARGET_SWIFT_VERSION
+source "$BASE_DIR/setup.sh" "$CONFIG_DIR" "$TARGET_SWIFT_VERSION"
 
 
 #######################

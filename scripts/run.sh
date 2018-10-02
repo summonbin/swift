@@ -24,34 +24,34 @@ BIN_ARGS=${BIN_ARGS[@]}
 #### Read config ####
 #####################
 
-PACKAGE_CACHE_DIR=$(<$CONFIG_DIR/package/cache)
+PACKAGE_CACHE_DIR=$(<"$CONFIG_DIR/package/cache")
 
 
 #####################
 #### Setup Swift ####
 #####################
 
-source $BASE_DIR/setup.sh $CONFIG_DIR $TARGET_SWIFT_VERSION
+source "$BASE_DIR/setup.sh" "$CONFIG_DIR" "$TARGET_SWIFT_VERSION"
 
 
 ########################
 #### Execute binary ####
 ########################
 
-PACKAGE_DIR=$PACKAGE_CACHE_DIR/$TARGET_SWIFT_VERSION/$BIN_NAME/$GIT_BRANCH
-BIN_PATH=$PACKAGE_DIR/.build/release/$BIN_NAME
+PACKAGE_DIR="$PACKAGE_CACHE_DIR/$TARGET_SWIFT_VERSION/$BIN_NAME/$GIT_BRANCH"
+BIN_PATH="$PACKAGE_DIR/.build/release/$BIN_NAME"
 
 # Clone swift repository
 if [ ! -d "$PACKAGE_DIR/.git" ]
 then
-  rm -rf $PACKAGE_DIR
-  git clone $GIT_URL $PACKAGE_DIR -b $GIT_BRANCH --single-branch --depth 1
+  rm -rf "$PACKAGE_DIR"
+  git clone "$GIT_URL" "$PACKAGE_DIR" -b "$GIT_BRANCH" --single-branch --depth 1
 fi
 
 # Build
 if [ ! -f "$BIN_PATH" ]
 then
-  swift build --package-path=$PACKAGE_DIR -c release -Xswiftc -static-stdlib -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.11" --disable-sandbox
+  swift build --package-path="$PACKAGE_DIR" -c release -Xswiftc -static-stdlib -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.11" --disable-sandbox
 fi
 
 # Execute
