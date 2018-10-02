@@ -24,7 +24,7 @@ BIN_ARGS=${BIN_ARGS[@]}
 #### Read config ####
 #####################
 
-PACKAGE_CACHE_DIR=$(<"$CONFIG_DIR/package/cache")
+PACKAGE_CACHE_DIR=$( eval "echo $(<"$CONFIG_DIR/package/cache")" )
 
 
 #####################
