@@ -8,7 +8,13 @@ CONFIG_DIR=$1
 TARGET_SWIFT_VERSION=$2
 
 # Arguments for bin
-BIN_ARGS=("$@")
+BIN_ARGS=()
+
+for i
+do
+  BIN_ARGS+=(\"${i}\")
+done
+
 unset BIN_ARGS[0]
 unset BIN_ARGS[1]
 BIN_ARGS=${BIN_ARGS[@]}
@@ -27,7 +33,7 @@ source "$BASE_DIR/setup.sh" "$CONFIG_DIR" "$TARGET_SWIFT_VERSION"
 
 if [ -t 1 ]
 then
-  swift $BIN_ARGS < /dev/tty
+  eval swift $BIN_ARGS < /dev/tty
 else
-  swift $BIN_ARGS
+  eval swift $BIN_ARGS
 fi
