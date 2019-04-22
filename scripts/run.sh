@@ -11,7 +11,13 @@ GIT_URL=$4
 GIT_BRANCH=$5
 
 # Arguments for bin
-BIN_ARGS=("$@")
+BIN_ARGS=()
+
+for i
+do
+  BIN_ARGS+=(\"${i}\")
+done
+
 unset BIN_ARGS[0]
 unset BIN_ARGS[1]
 unset BIN_ARGS[2]
