@@ -63,7 +63,7 @@ fi
 # Execute
 if [ -t 1 ]
 then
-  $BIN_PATH $BIN_ARGS < /dev/tty
+  eval $BIN_PATH $BIN_ARGS < /dev/tty
 else
-  $BIN_PATH $BIN_ARGS
+  eval $BIN_PATH $BIN_ARGS
 fi

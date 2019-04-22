@@ -33,7 +33,7 @@ source "$BASE_DIR/setup.sh" "$CONFIG_DIR" "$TARGET_SWIFT_VERSION"
 
 if [ -t 1 ]
 then
-  swift $BIN_ARGS < /dev/tty
+  eval swift $BIN_ARGS < /dev/tty
 else
-  swift $BIN_ARGS
+  eval swift $BIN_ARGS
 fi
