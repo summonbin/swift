@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 DRIVER_NAME="swift"
 VERSION="0.1.3"
 BASE_URL="https://raw.githubusercontent.com/summonbin/swift"
